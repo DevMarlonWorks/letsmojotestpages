@@ -1,6 +1,6 @@
-import { CSSProperties, useEffect, useMemo, useState } from "react";
-import ClipLoader from "react-spinners/ClipLoader";
+import { useEffect, useMemo, useState } from "react";
 import Card from "../../components/Card";
+import Loading from "../../components/Load";
 import { clientAPI } from "../../server/client-api";
 import {
   AddressWrapper,
@@ -20,12 +20,6 @@ interface IAddressType {
   id: string;
 }
 
-const override: CSSProperties = {
-  display: "block",
-  margin: "0 auto",
-  borderColor: "#9381FF",
-};
-
 const Home = () => {
   const [addressList, setAddressList] = useState<IAddressType[]>([]);
 
@@ -33,7 +27,6 @@ const Home = () => {
   const [orderSize, setOrderSize] = useState("");
 
   let [loading, setLoading] = useState(false);
-  let [color, setColor] = useState("#ffffff");
 
   const getFilteredList = () => {
     // Avoid filter when selectedCategory is null
@@ -84,18 +77,13 @@ const Home = () => {
   };
 
   const loadAddressList = async () => {
-    setLoading(true)
+    setLoading(true);
     const {
       data: { data: AddressListFetched },
     } = await clientAPI.get("properties/list");
-    const serializedData = AddressListFetched.map((address: any) => {
-      return {
-        ...address,
-        id: `${Math.trunc(Math.random() * 1000)}`,
-      };
-    });
-    setAddressList(serializedData);
-    setLoading(false)
+
+    setAddressList(AddressListFetched);
+    setLoading(false);
   };
 
   useEffect(() => {
@@ -140,19 +128,13 @@ const Home = () => {
       </Filters>
 
       {loading ? (
-        <ClipLoader
-          color={color}
-          loading={loading}
-          cssOverride={override}
-          size={50}
-          aria-label="Loading Spinner"
-          data-testid="loader"
-        />
+        <Loading isLoading={loading} />
       ) : (
         <AddressWrapper>
           {filteredList.map((data) => {
             return (
               <Card
+                id={data.id}
                 key={data.id}
                 name={data.name}
                 address={data.address}

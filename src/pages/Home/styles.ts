@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
-export const Container = styled.div`
+export const Container = styled.main`
+  cursor: pointer;
   max-width: 1280px;
   margin: 32px auto;
   padding: 0 20px;

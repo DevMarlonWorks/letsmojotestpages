@@ -1,6 +1,7 @@
 import { CardInfo, Container, Price, Size } from "./styles";
 
 interface ICardProps {
+  id: string;
   name: string;
   address: string;
   sizeInFeet: number;
@@ -8,9 +9,9 @@ interface ICardProps {
   image: string;
 }
 
-const Card = ({ address, image, name, price, sizeInFeet }: ICardProps) => {
+const Card = ({ id, address, image, name, price, sizeInFeet }: ICardProps) => {
   return (
-    <Container>
+    <Container to={`/${id}`}>
       <img src={image} />
       <CardInfo>
         <h3>{name}</h3>

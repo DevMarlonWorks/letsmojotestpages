@@ -1,6 +1,7 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-export const Container = styled.div`
+export const Container = styled(Link)`
   background-color: #fff;
 
   > img {
@@ -55,7 +56,7 @@ export const Size = styled.div`
 `;
 export const Price = styled.strong`
   font-family: "Inter", sans-serif;
-  color: #9381FF;
+  color: #9381ff;
   font-size: 1.2rem;
   font-weight: 600;
 `;
