@@ -105,7 +105,7 @@ const Home = () => {
   return (
     <Container>
       <Message>
-        <img src="https://github.com/marlonlencina.png" />
+        <img src="https://avatars.githubusercontent.com/u/122228798?s=200&v=4" />
         <h1>
           There was a simple project developed by @devmarlon. you can contact me
           on: &nbsp;
